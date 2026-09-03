@@ -40,7 +40,7 @@ duration: 5min
 
 ---
 layout: image-right
-image: public/imgs/collective.png
+image: https://fis3-fomase.github.io/talk-2026-sasso-macro-to-micro-mapping/imgs/collective.png
 backgroundSize: 75% 80%
 ---
 
@@ -139,7 +139,7 @@ To capture and describe:
 
 ---
 layout: image-right
-image: public/imgs/event_structure.png
+image: https://fis3-fomase.github.io/talk-2026-sasso-macro-to-micro-mapping/imgs/event_structure.png
 backgroundSize: contain
 ---
 
@@ -191,7 +191,7 @@ Macro-effect: changes on the environment caused by the system execution
 
 ---
 layout: image-right
-image: public/imgs/deployment.png
+image: https://fis3-fomase.github.io/talk-2026-sasso-macro-to-micro-mapping/imgs/deployment.png
 backgroundSize: 80% 60%
 ---
 
