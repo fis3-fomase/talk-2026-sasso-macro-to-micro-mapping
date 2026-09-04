@@ -120,10 +120,10 @@ Two formalisms to express the behavior of collective systems that are not mutual
 
 To capture and describe:
 
-- Expected scenarios --- _macro-input_
-- Desired outcomes --- _macro-output_ and _effect_
-- Deployment process --- _macro-program_ to device _policy_
-- Adaptation process --- _policy_ evolution over time
+- Expected scenarios --- <u>_macro-input_</u>
+- Desired outcomes --- <u>_macro-output_</u> and <u>_effect_</u>
+- Deployment process --- <u>_macro-program_</u> to device <u>_policy_</u>
+- Adaptation process --- <u>_policy_</u> evolution over time
 
 </div>
 
@@ -161,7 +161,7 @@ backgroundSize: contain
 The initial conditions that affect the system dynamics:
 
 - environmental state
-- initial computation (i.e., events at $t_0$)
+- initial computation (i.e., events at time 0)
 - network topology
 
 </div>
@@ -172,9 +172,9 @@ The initial conditions that affect the system dynamics:
 
 <div class="h-100 flex flex-col justify-center">
 
-Macro-output: result of the collective computation --- $\;\epsilon \in E_{T_\mathit{end}}$
+- Macro-output: result of the collective computation --- in form of events
 
-Macro-effect: changes on the environment caused by the system execution
+- Macro-effect: changes on the environment caused by the system execution
 
 </div>
 
@@ -185,7 +185,8 @@ Macro-effect: changes on the environment caused by the system execution
 <div class="h-100 flex flex-col justify-center">
 
 - Compute the _macro-output_ or cause the _macro-effect_ starting from a _macro-input_
-- Map different (space-time) situations to specific behavioral policies: $\Theta: X \times T \rightarrow \mathcal{M}$
+
+- Map different (space-time) situations to specific behavioral policies (i.e., what to do in each situation)
 
 </div>
 
@@ -203,9 +204,8 @@ backgroundSize: 80% 60%
 
 <div class="h-100 flex flex-col justify-center">
 
-- Map devices to policies $\;\;\Phi: \Delta \to M$
-- Depend on device capabilities and program requirements $\;\;\mathit{cap}(\delta) \models \mathit{req}(\mu)$
-$\;\;\Longleftrightarrow\;\; \mathit{req}(\mu) \subseteq \mathit{cap}(\delta)$
+- Map devices to policies --- decide which device will execute a specific policy
+- Deploy policies on devices able to execute them --- concept of capabilities and requirements: $\mathit{req}(\mu) \subseteq \mathit{cap}(\delta)$
 </div>
 
 ---
@@ -225,12 +225,12 @@ $\;\;\Longleftrightarrow\;\; \mathit{req}(\mu) \subseteq \mathit{cap}(\delta)$
 - dyn-het: $\mu $ -->
 
 According to time:
-- _static_: the policy of each device remains the same over time
-- _dynamic_: the policy of at least one device changes during execution
+- <u>_static_</u>: the policy of each device remains the same over time
+- <u>_dynamic_</u>: the policy of at least one device changes during execution
 
 According to the collective:
-- _homogeneous_: all devices share, at any moment, the same policy
-- _heterogeneous_: at least two devices employ, at any moment in time, different policies
+- <u>_homogeneous_</u>: all devices share, at any moment, the same policy
+- <u>_heterogeneous_</u>: at least two devices employ, at any moment in time, different policies
 
 </div>
 
@@ -254,7 +254,7 @@ def distanceTo(s) {
 
 
 - _Homogeneous_ localization
-- Empty requirement and capability sets<br/>&nbsp;
+- Common device capability and unique requirement sets
 - Events capture field-based computation
 
 </div>
@@ -298,7 +298,17 @@ C = if p.c == x
 
 <div class="h-100 w-full flex flex-col justify-center">
 
-- Further elaborate the mapping mechanism
-- Further elaborate dynamic macro-programming and related techniques
+- Further elaborate the macro-to-micro mapping mechanism
+- Further elaborate dynamic macro-programming and enabling techniques
+
+</div>
+
+---
+
+# Acknowledgments
+
+<div class="h-100 w-full flex flex-col justify-center">
+
+This work has been founded by the project ["FoMaSE: Foundations for Macro-programming-based Software Engineering"](https://fis3-fomase.github.io).
 
 </div>
