@@ -24,7 +24,6 @@ transition: slide-left
 comark: true
 # duration of the presentation
 duration: 5min
-
 ---
 
 <style>
@@ -38,6 +37,10 @@ duration: 5min
 # Macro-to-micro behavioural mappings in distributed systems
 ## A characterisation on event structures
 
+<!--
+Good afternoon everybody, my name is Paolo Baldini and I'm here to present the work that I conducted together with Roberto Casadei and Nicolò Castronovo, titled "Macro-to-micro behavioural mappings in distributed systems: A characterisation on event structures".
+-->
+
 ---
 layout: image-right
 image: https://fis3-fomase.github.io/talk-2026-sasso-macro-to-micro-mapping/imgs/collective.png
@@ -48,7 +51,7 @@ backgroundSize: 75% 80%
 
 # Context
 
-- Collective adaptive systems
+- Collective systems
 - Programming paradigms
 
 </div><div>
@@ -60,6 +63,15 @@ backgroundSize: 75% 80%
 
 </div></div>
 
+<!--
+I will begin this presentation by providing some context.
+This work falls within the topics of collective systems, so systems composed of multiple interacting elements, and programming paradigms.
+Specifically, it considers paradigms permitting the definition of the system overall behavior rather than that of its composing elements – we will refer to those as macroscopic programming paradigms.
+
+The issue that we address is the difference between all those different approaches that, we believe, complicates the sharing of ideas and the interaction between different communities.
+What we propose is, therefore, to adopt a common, unified definition framework capable of simplifying the sharing of ideas.
+-->
+
 ---
 layout: two-cols-header
 ---
@@ -67,12 +79,12 @@ layout: two-cols-header
 # Examples
 
 <div class="grid grid-cols-2 gap-8 my-6 pt-5">
-
 <div class="min-w-0 w-full pr-3 overflow-auto space-y-0">
 
 ## Aggregate computing
 
 ```java
+// Gradient field computation
 def distanceTo(s) {
   rep(∞) {
     (dist) => mux(s, 0, minHood(nbr{dist} + nbrRange()))
@@ -91,6 +103,7 @@ def distanceTo(s) {
 ## Choreography
 
 ```java
+// Conditional information sharing
 
 C = if p.c == x
     then (p → r[L]; p.c → r; 0)
@@ -112,6 +125,15 @@ Two formalisms to express the behavior of collective systems that are not mutual
 
 </div>
 
+<!--
+In order to better highlight the problem, I will briefly introduce two examples, one using aggregate computing and another using a choreographic approach for the definition of the behavior of two collective systems.
+The former shows the computation of a gradient field, the latter a conditional information sharing between two devices.
+
+While both permit the definition of high-level programs, they present some differences that make them quite different.
+Among the most notable, we find the way in which the program is deployed to the devices: in aggregate computing the program is simply copied to the devices and executed locally; in choreographic programming, the program is projected into device (or role) specific programs.
+Furthermore, they employ two different approach to computation: aggregate computing leverage an abstract concept of field values shared across the collective system; choreographic programming employs an explicit message abstraction.
+-->
+
 ---
 
 # A unifying framework
@@ -128,14 +150,12 @@ To capture and describe:
 </div>
 
 <!--
-1. Macro-input ✅
-2. Macro-output ✅
-5. Macro-programming goal ~
-
-1. Macro-to-Micro localization process ✅
-2. Time slice ❎
-3. Compatibility conditions ✅
-4. Local information space ❎ -->
+So, in other to unify these two programming approaches, we propose a unifying framework to capture and describe:
+- the expected execution scenarios, that we refer to as macro-input
+- the desired outcomes, that we call macro-output or macro-effect depending is they are the result of a computation or an effect on the environment
+- the deployment process of the macro-program to the devices, and
+- the adaptation process, that describes the evolution of the program over time – we will discuss about it, more in detail, later.
+-->
 
 ---
 layout: image-right
@@ -152,19 +172,31 @@ backgroundSize: contain
 
 </div>
 
+<!--
+To do so, we leverage the concept of event structure, previously defined to capture the execution of a collective system.
+This employs the _event_ abstraction, that comprises perceptual update, computation, and inter-action – communication and action on the environment.
+The main point is that events execution cause other events on the system, on the same or different devices.
+-->
+
 ---
 
 # Expected scenarios --- _macro-input_
 
 <div class="h-100 flex flex-col justify-center">
 
-The initial conditions that affect the system dynamics:
+The _initial_ conditions that affect the system dynamics:
 
 - environmental state
-- initial computation (i.e., events at time 0)
+- system state
 - network topology
 
 </div>
+
+<!--
+The first use that we make of event structures is to define the expected execution scenarios – the macro-input of the system.
+We imagine that the characteristics of the operational environments for which the system is designed can be expressed in function of events.
+Specifically, those comprise initial environmental states captured by the perceptual step of the event, the initial computation of the device depending on its instantiation, and the network topology – i.e., how the computation of other nodes depends on the initial events.
+-->
 
 ---
 
@@ -172,11 +204,21 @@ The initial conditions that affect the system dynamics:
 
 <div class="h-100 flex flex-col justify-center">
 
-- Macro-output: result of the collective computation --- in form of events
+- Macro-output: informative result of the collective computation
+
+&ensp;&ensp; function of final events: $f(\epsilon_{\textit{T}_\textit{end}}^*)$
 
 - Macro-effect: changes on the environment caused by the system execution
 
+&ensp;&ensp; function of the final collective perception: $f(s_{\textit{T}_\textit{end}}^*)$
+
 </div>
+
+<!--
+We also define the desired outcomes in function of events.
+This include the results of a computation, that are the events produced at the end of the computation itself, and effects on the environment, that are the changed that the collective system made to the environment during execution – this includes also intermediate events.
+Examples of these two could include consensus and environmental cleanup performed by robots.
+-->
 
 ---
 
@@ -184,11 +226,16 @@ The initial conditions that affect the system dynamics:
 
 <div class="h-100 flex flex-col justify-center">
 
-- Compute the _macro-output_ or cause the _macro-effect_ starting from a _macro-input_
+- Compute the _macro-output_ or cause the _macro-effect_ starting from _macro-inputs_
 
-- Map different (space-time) situations to specific behavioral policies (i.e., what to do in each situation)
+- Map space-time circumstances to actions (i.e., define specific behavioral policies)
 
 </div>
+
+<!--
+So, given macro-inputs and a macro-output/-effect, the goal of macro-programming becomes mapping space-time circumstances, including device types, to specific actions (i.e., behavioral policies), so as to obtain the desired outcome.
+For instance, given as desired effect the execution of a foraging behavior in a group of robots, our goal will be the creation of behavioral policies defining, for each space-time situation resulting from the initial conditions, the corresponding action to perform.
+-->
 
 ---
 layout: image-right
@@ -205,8 +252,13 @@ backgroundSize: 80% 60%
 <div class="h-100 flex flex-col justify-center">
 
 - Map devices to policies --- decide which device will execute a specific policy
-- Deploy policies on devices able to execute them --- concept of capabilities and requirements: $\mathit{req}(\mu) \subseteq \mathit{cap}(\delta)$
+- Deploy policies on devices capable of executing them: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;$\small\mathit{requirement}(\mathit{policy}) \subseteq \mathit{capability}(\mathit{device})$
 </div>
+
+<!--
+We imagine this process to be performed by a localization procedure that maps devices to specific behavioral policies.
+Furthermore, we imagine it capable of deploying policies to devices according to their execution capabilities and program requirements – we refer to this constraint as "compatibility condition".
+-->
 
 ---
 
@@ -234,6 +286,16 @@ According to the collective:
 
 </div>
 
+<!--
+In this work we also characterize different macro-programming approaches according to the type of policies produced by the localization process.
+If the policy of every device remains the same over the execution of the computation, we refer to static macro-programming.
+If, instead, the policy of at least a device changes during execution we refer to dynamic macro-programming.
+This distinction directly captures both fixed and adaptable mechanisms, including the programming of learning collectives.
+
+Another distinction depends on the type of policies spread over the collective system.
+Specifically, if all device share, at any moment, the same policy, they are called homogeneous, while, if at least two device employ different policies at any time, they are called heterogeneous.
+-->
+
 ---
 
 # Results
@@ -245,6 +307,7 @@ According to the collective:
 ## Aggregate computing
 
 ```java
+// Gradient field computation
 def distanceTo(s) {
   rep(∞) {
     (dist) => mux(s, 0, minHood(nbr{dist} + nbrRange()))
@@ -264,6 +327,7 @@ def distanceTo(s) {
 ## Choreography
 
 ```java
+// Conditional information sharing
 
 C = if p.c == x
     then (p → r[L]; p.c → r; 0)
@@ -280,6 +344,13 @@ C = if p.c == x
 
 </div>
 
+<!--
+So, returning to the previous examples, with the proposed definition framework, aggregate computing and choreographic programming can the observed from the same perspective.
+The former falls under the definition of homogeneous macro-programming approach, while the latter under the class of heterogenous macro-programming.
+Aggregate computing expect that all devices satisfy the given requirements such, in this case, the presence of some primitive functions, while choreographic programming distinguish requirements and capabilities for devices and roles.
+Finally, the event abstraction captures both the field-based and message-based computation, simply representing the computation on shared data.
+-->
+
 ---
 
 # Results
@@ -292,6 +363,10 @@ C = if p.c == x
 
 </div>
 
+<!--
+The result is, therefore, that this framework enables a unified interpretation of different paradigms, enabling the possibility to propose approach-agnostic solutions leveraging event abstractions and thus simplifying the sharing of ideas and the interaction between communities.
+-->
+
 ---
 
 # Future works
@@ -303,6 +378,10 @@ C = if p.c == x
 
 </div>
 
+<!--
+As future work, we would like to further elaborate the macro-to-micro mapping mechanism, which we believe could be improved in its definition, and to more deeply investigate techniques enabling dynamic macro-programming, such as learning based methodologies.
+-->
+
 ---
 
 # Acknowledgments
@@ -312,3 +391,7 @@ C = if p.c == x
 This work has been founded by the project ["FoMaSE: Foundations for Macro-programming-based Software Engineering"](https://fis3-fomase.github.io).
 
 </div>
+
+<!--
+To conclude, I would like to acknowledge the importance of the FoMaSE project, focussing on the investigation of macro-programming based engineering of collective system, which founded the present work.
+-->
