@@ -65,11 +65,11 @@ backgroundSize: 75% 80%
 
 <!--
 I will begin this presentation by providing some context.
-This work falls within the topics of collective systems, so systems composed of multiple interacting elements, and programming paradigms.
-Specifically, it considers paradigms permitting the definition of the system overall behavior rather than that of its composing elements – we will refer to those as macroscopic programming paradigms.
+<u>This work falls within</u> the topics of <u>collective systems</u>, so systems composed of multiple interacting elements, <u>and programming paradigms</u>.
+Specifically, it considers paradigms <u>permitting the definition of the system overall behavior</u> rather than that of its composing elements – we will refer to those as macroscopic programming paradigms.
 
-The issue that we address is the difference between all those different approaches that, we believe, complicates the sharing of ideas and the interaction between different communities.
-What we propose is, therefore, to adopt a common, unified definition framework capable of simplifying the sharing of ideas.
+The <u>issue that we address is the difference</u> between all those different approaches that, we believe, complicates the sharing of ideas and the interaction between different communities.
+What <u>we propose</u> is, therefore, to adopt <u>a common, unified definition framework</u> capable of simplifying the sharing of ideas.
 -->
 
 ---
@@ -126,12 +126,12 @@ Two formalisms to express the behavior of collective systems that are not mutual
 </div>
 
 <!--
-In order to better highlight the problem, I will briefly introduce two examples, one using aggregate computing and another using a choreographic approach for the definition of the behavior of two collective systems.
-The former shows the computation of a gradient field, the latter a conditional information sharing between two devices.
+In order to better highlight the problem, I will briefly introduce <u>two examples</u>, one using aggregate computing and another using a choreographic approach for the definition of the behavior of collective systems.
+The former shows the <u>computation of a gradient field</u>, the latter a conditional <u>information sharing between two processes</u>.
 
-While both permit the definition of high-level programs, they present some differences that make them quite different.
-Among the most notable, we find the way in which the program is deployed to the devices: in aggregate computing the program is simply copied to the devices and executed locally; in choreographic programming, the program is projected into device (or role) specific programs.
-Furthermore, they employ two different approach to computation: aggregate computing leverage an abstract concept of field values shared across the collective system; choreographic programming employs an explicit message abstraction.
+While both permit the definition of high-level programs, they present <u>some differences</u> that make them quite different.
+Among the most notable, we find the <u>way in which the program is deployed</u> to the devices: in aggregate computing the program is simply copied to the devices and executed locally; in choreographic programming, the program is projected into device (or role) specific programs.
+Furthermore, they employ two different <u>approach to computation</u>: aggregate computing leverage an abstract concept of field values shared across the collective system; choreographic programming employs an explicit message abstraction.
 -->
 
 ---
@@ -173,9 +173,9 @@ backgroundSize: contain
 </div>
 
 <!--
-To do so, we leverage the concept of event structure, previously defined to capture the execution of a collective system.
-This employs the _event_ abstraction, that comprises perceptual update, computation, and inter-action – communication and action on the environment.
-The main point is that events execution cause other events on the system, on the same or different devices.
+To do so, we leverage the concept of <u>event structure</u>, previously <u>defined to capture the execution of a collective system</u>.
+This employs the event abstraction, that comprises <u>perceptual update, computation, and inter-action</u> – <u>communication and action on the environment</u>.
+The main point is that <u>events execution cause other events</u> on the system, on the same or different devices.
 -->
 
 ---
@@ -194,8 +194,8 @@ The _initial_ conditions that affect the system dynamics:
 
 <!--
 The first use that we make of event structures is to define the expected execution scenarios – the macro-input of the system.
-We imagine that the characteristics of the operational environments for which the system is designed can be expressed in function of events.
-Specifically, those comprise initial environmental states captured by the perceptual step of the event, the initial computation of the device depending on its instantiation, and the network topology – i.e., how the computation of other nodes depends on the initial events.
+We imagine that the <u>characteristics of the operational environments</u> for which the system is designed <u>can be expressed in function of events</u>.
+Specifically, <u>those comprise initial environmental states</u> captured by the perceptual step of the event, the <u>initial computation</u> of the device depending on its instantiation, and the <u>network topology</u> – i.e., <u>how the computation of other nodes depends on the initial events</u>.
 -->
 
 ---
@@ -216,8 +216,8 @@ Specifically, those comprise initial environmental states captured by the percep
 
 <!--
 We also define the desired outcomes in function of events.
-This include the results of a computation, that are the events produced at the end of the computation itself, and effects on the environment, that are the changed that the collective system made to the environment during execution – this includes also intermediate events.
-Examples of these two could include consensus and environmental cleanup performed by robots.
+This include the <u>results of a computation, that are the events produced at the end</u> of the computation itself, <u>and effects on the environment, that are the changed that the collective system made to the environment during execution</u> – this includes also intermediate events.
+Examples of these two could include <u>consensus</u> and <u>environmental cleanup</u> performed by robots.
 -->
 
 ---
@@ -233,8 +233,8 @@ Examples of these two could include consensus and environmental cleanup performe
 </div>
 
 <!--
-So, given macro-inputs and a macro-output/-effect, the goal of macro-programming becomes mapping space-time circumstances, including device types, to specific actions (i.e., behavioral policies), so as to obtain the desired outcome.
-For instance, given as desired effect the execution of a foraging behavior in a group of robots, our goal will be the creation of behavioral policies defining, for each space-time situation resulting from the initial conditions, the corresponding action to perform.
+So, given macro-inputs and a macro-output/-effect, the goal of macro-programming becomes <u>mapping space-time circumstances, including device types, to specific actions</u> (i.e., behavioral policies), so as to obtain the desired outcome.
+For instance, given as desired effect the execution of a <u>foraging behavior</u> in a group of robots, our goal will be the <u>creation of behavioral policies</u> defining, for each space-time situation resulting from the initial conditions, the corresponding action to perform.
 -->
 
 ---
@@ -287,7 +287,7 @@ According to the collective:
 </div>
 
 <!--
-In this work we also characterize different macro-programming approaches according to the type of policies produced by the localization process.
+In this work <u>we also characterize different macro-programming approaches according to the type of policies produced by the localization process</u>.
 If the policy of every device remains the same over the execution of the computation, we refer to static macro-programming.
 If, instead, the policy of at least a device changes during execution we refer to dynamic macro-programming.
 This distinction directly captures both fixed and adaptable mechanisms, including the programming of learning collectives.
@@ -345,10 +345,10 @@ C = if p.c == x
 </div>
 
 <!--
-So, returning to the previous examples, with the proposed definition framework, aggregate computing and choreographic programming can the observed from the same perspective.
-The former falls under the definition of homogeneous macro-programming approach, while the latter under the class of heterogenous macro-programming.
-Aggregate computing expect that all devices satisfy the given requirements such, in this case, the presence of some primitive functions, while choreographic programming distinguish requirements and capabilities for devices and roles.
-Finally, the event abstraction captures both the field-based and message-based computation, simply representing the computation on shared data.
+So, <u>returning to the previous examples</u>, with the proposed definition framework, <u>aggregate computing and choreographic programming can the observed from the same perspective</u>.
+The former program falls under the definition of homogeneous macro-programming approach, while the latter under the class of heterogenous macro-programming.
+<u>Aggregate computing</u> expect that <u>all devices satisfy the given requirements such as</u>, in this case, the presence of some <u>primitive functions</u>, while <u>choreographic programming</u> distinguish requirements and capabilities <u>for devices and roles</u>.
+Finally, the <u>event abstraction captures both the field-based and message-based computation</u>, simply representing the computation on shared data.
 -->
 
 ---
@@ -364,7 +364,7 @@ Finally, the event abstraction captures both the field-based and message-based c
 </div>
 
 <!--
-The result is, therefore, that this framework enables a unified interpretation of different paradigms, enabling the possibility to propose approach-agnostic solutions leveraging event abstractions and thus simplifying the sharing of ideas and the interaction between communities.
+The result is, therefore, that this framework enables a unified interpretation of different paradigms, enabling the possibility to propose approach-agnostic solutions leveraging event abstractions and thus simplifying the sharing of ideas and the interaction <u>between communities</u>.
 -->
 
 ---
@@ -379,7 +379,7 @@ The result is, therefore, that this framework enables a unified interpretation o
 </div>
 
 <!--
-As future work, we would like to further elaborate the macro-to-micro mapping mechanism, which we believe could be improved in its definition, and to more deeply investigate techniques enabling dynamic macro-programming, such as learning based methodologies.
+As future work, we would like to further elaborate the macro-to-micro mapping mechanism, which we believe could be improved in its definition, and to more deeply investigate techniques enabling dynamic macro-programming, such as <u>learning based methodologies</u>.
 -->
 
 ---
